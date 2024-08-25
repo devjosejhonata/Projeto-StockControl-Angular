@@ -1,0 +1,87 @@
+<div class="grid">
+  <!-- Container principal usando grid layout -->
+  <div class="col-12">
+    <!-- Define que esta div ocupará 12 colunas (full width) -->
+    <div class="flex justify-content-center align-content-center text-align-center">
+      <!-- Flex container para centralizar o conteúdo -->
+
+      <!-- LOGIN -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
+        <!-- Formulário de login vinculado ao formGroup 'loginForm', submetido ao chamar 'onSubmitLoginForm()' -->
+         
+        <p-card
+          styleClass="mt-10"
+          header="Login"
+          subheader="Faça login com sua conta existente!"
+          *ngIf="loginCard"
+        ><!-- Componente de cartão do PrimeNG exibido apenas se 'loginCard' for verdadeiro -->
+
+          <div class="flex justify-content-center align-content-center text-align-center">
+            <!-- Input de email com vinculação de formulário -->
+            <input #emailInput type="email" pInputText placeholder="Email" formControlName="email"/>
+          </div>
+
+          <div class="flex justify-content-center align-content-center text-align-center mt-3">
+            <!-- Input de senha com vinculação de formulário -->
+            <input #passwordInput type="password" pInputText placeholder="Senha" formControlName="password"/>
+          </div>
+
+          <div class="card flex justify-content-center mt-3">
+            <!-- Botão de submissão do formulário de login, desativado se o formulário for inválido -->
+            <button type="submit" pButton pRipple label="Login" [disabled]="!this.loginForm.valid"></button>
+          </div>
+
+          <span
+            class="flex justify-content-center align-content-center text-align-center mt-3 text-red-600 font-semibold"
+            (click)="loginCard = !loginCard"
+            style="cursor: pointer;"
+          >
+            Criar conta
+          </span><!-- Texto para alternar entre os formulários de login e criação de conta -->
+
+        </p-card>
+      </form>
+
+      <!-- CRIAR CONTA -->
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()">
+        <!-- Formulário de criação de conta vinculado ao formGroup 'signupForm', submetido ao chamar 'onSubmitSignupForm()' -->
+
+        <p-card
+          styleClass="mt-10"
+          header="Criar conta"
+          subheader="Crie já sua conta gratuita!"
+          *ngIf="!loginCard"
+        ><!-- Componente de cartão do PrimeNG exibido apenas se 'loginCard' for falso -->
+
+          <div class="flex justify-content-center align-content-center text-align-center">
+            <!-- Input para o nome com vinculação de formulário -->
+            <input type="text" pInputText placeholder="Nome" formControlName="name"/>
+          </div>
+
+          <div class="flex justify-content-center align-content-center text-align-center mt-3">
+            <!-- Input de email com vinculação de formulário -->
+            <input type="email" pInputText placeholder="Email" formControlName="email"/>
+          </div>
+
+          <div class="flex justify-content-center align-content-center text-align-center mt-3">
+            <!-- Input de senha com vinculação de formulário -->
+            <input type="password" pInputText placeholder="Senha" formControlName="password"/>
+          </div>
+
+          <div class="card flex justify-content-center mt-3">
+            <!-- Botão de submissão do formulário de criação de conta, desativado se o formulário for inválido -->
+            <button type="submit" pButton pRipple label="Criar conta" [disabled]="!this.signupForm.valid"></button>
+          </div>
+
+          <span
+            class="flex justify-content-center align-content-center text-align-center mt-3 text-red-600 font-semibold"
+            (click)="loginCard = !loginCard"
+            style="cursor: pointer;"
+          ><!-- Texto para alternar entre os formulários de criação de conta e login -->
+            Fazer login
+          </span>
+        </p-card>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+<!-- Formulário de novo produto -->
+<!-- Exibe o formulário de adição de produto quando a ação atual é adicionar produto -->
+<div *ngIf="productAction?.event?.action === addProductAction">
+  <!-- Formulário que utiliza o formGroup 'addProductForm' para gerenciamento de estado e validação -->
+  <form [formGroup]="addProductForm" (ngSubmit)="handleSubmitAddProduct()">
+    <!-- Card contendo os campos do formulário com layout flexível -->
+    <div class="card flex flex-column md:flex-column gap-3">
+      <!-- Campo de entrada para o nome do produto -->
+      <input pInputText placeholder="Nome" formControlName="name" />
+
+      <!-- Dropdown para selecionar a categoria do produto, preenchido com as opções disponíveis em 'categoriesDatas' -->
+      <p-dropdown
+        styleClass="w-full"
+        [options]="categoriesDatas"
+        [(ngModel)]="selectedCategory"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Selecione uma categoria"
+        formControlName="category_id"
+      ></p-dropdown>
+
+      <!-- Campo de entrada para o preço do produto -->
+      <input pInputText placeholder="Preço" formControlName="price" />
+
+      <!-- Campo de entrada para a descrição do produto -->
+      <input pInputText placeholder="Descrição" formControlName="description" />
+
+      <!-- Campo de entrada para a quantidade do produto -->
+      <input pInputText placeholder="Quantidade" formControlName="amount" />
+
+      <!-- Botão para submeter o formulário de adição de produto -->
+      <div class="flex flex-row justify-content-center align-content-center align-items-center m-1">
+        <!-- Botão desabilitado enquanto o formulário não for válido -->
+        <p-button
+        [disabled]="!addProductForm.valid"
+        type="submit"
+        label="Concluir"
+        ></p-button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Formulário de editar produto -->
+<!-- Exibe o formulário de edição de produto quando a ação atual é editar produto -->
+<div *ngIf="productAction?.event?.action === editProductAction">
+  <!-- Formulário que utiliza o formGroup 'editProductForm' para gerenciamento de estado e validação -->
+  <form [formGroup]="editProductForm" (ngSubmit)="handleSubmitEditProduct()">
+   <div class="card flex flex-column md:flex-column gap-3">
+     <!-- Campo de entrada para o nome do produto -->
+     <input pInputText placeholder="Nome" formControlName="name" />
+
+     <!-- Dropdown para seleção de categoria, renderizado apenas se 'renderDropdown' for verdadeiro -->
+     <div *ngIf="renderDropdown">
+       <p-dropdown
+       styleClass="w-full"
+       [options]="categoriesDatas"
+       [(ngModel)]="selectedCategory"
+       optionLabel="name"
+       optionValue="id"
+       formControlName="category_id"
+     ></p-dropdown>
+     </div>
+
+     <!-- Campo de entrada para o preço do produto -->
+     <input pInputText placeholder="Preço" formControlName="price" />
+
+     <!-- Campo de entrada para a descrição do produto -->
+     <input pInputText placeholder="Descrição" formControlName="description" />
+
+     <!-- Campo de entrada para a quantidade do produto, configurado como campo numérico -->
+     <input pInputText type="number" placeholder="Quantidade" formControlName="amount" />
+
+     <!-- Botão para submeter o formulário de edição de produto -->
+     <div class="flex flex-row justify-content-center align-content-center align-items-center">
+       <!-- Botão desabilitado enquanto o formulário não for válido -->
+       <p-button
+         [disabled]="!editProductForm.valid"
+         type="submit"
+         label="Concluir"
+       ></p-button>
+     </div>
+   </div>
+  </form>
+</div>
+
+<!-- Formulário de vender produto -->
+<!-- Exibe o formulário de venda de produto quando a ação atual é vender produto -->
+<div *ngIf="productAction?.event?.action === saleProductAction">
+ <!-- Formulário que utiliza o formGroup 'saleProductForm' para gerenciamento de estado e validação -->
+ <form [formGroup]="saleProductForm" (ngSubmit)="handleSubmitSaleProduct()">
+   <div class="card flex flex-column md:flex-column gap-3">
+     <!-- Dropdown para selecionar o produto a ser vendido, preenchido com as opções disponíveis em 'productsDatas' -->
+     <p-dropdown
+       [options]="productsDatas"
+       [(ngModel)]="saleProductSelect"
+       styleClass="w-full"
+       optionLabel="name"
+       optionValue="id"
+       placeholder="Selecione um produto"
+       formControlName="product_id"
+     ></p-dropdown>
+
+     <!-- Campo de entrada para a quantidade de produto a ser vendida, configurado como campo numérico -->
+     <input type="number" pInputText placeholder="Quantidade" formControlName="amount"/>
+
+     <!-- Botão para submeter o formulário de venda de produto -->
+     <div class="flex flex-row justify-content-center align-content-center align-items-center">
+       <!-- Botão desabilitado enquanto o formulário não for válido -->
+       <p-button
+         [disabled]="!saleProductForm.valid"
+         type="submit"
+         label="Concluir"
+       ></p-button>
+     </div>
+   </div>
+ </form>
+</div>

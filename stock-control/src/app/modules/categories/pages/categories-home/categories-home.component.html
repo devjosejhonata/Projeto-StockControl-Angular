@@ -1,0 +1,9 @@
+<!-- Componente responsável por exibir a barra de navegação da aplicação -->
+<app-toolbar-navigation></app-toolbar-navigation>
+
+<!-- Componente da tabela de categorias -->
+ <app-categories-table
+  [categories]="categoriesDatas"
+  (deleteCategoryEvent)="handleDeleteCategoryAction($event)"
+  (categoryEvent)="handleCategoryAction($event)"
+></app-categories-table>

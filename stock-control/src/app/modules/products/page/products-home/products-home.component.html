@@ -1,0 +1,11 @@
+<app-toolbar-navigation></app-toolbar-navigation>
+<!-- Inclui o componente app-toolbar-navigation na página; responsável pela barra de navegação -->
+
+<app-products-table
+  [products]="productsData"
+  (productEvent)="handleProductAction($event)"
+  (deleteProductEvent)="handleDeleteProductAction($event)"
+></app-products-table>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<!-- Inclui o componente p-confirmDialog da PrimeNG para exibir diálogos de confirmação; define a largura do diálogo para 50% da largura da viewport -->

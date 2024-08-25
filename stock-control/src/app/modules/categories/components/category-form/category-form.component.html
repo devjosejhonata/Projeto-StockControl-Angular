@@ -1,0 +1,23 @@
+<div>
+  <!-- Formulário Angular vinculado ao formGroup 'categoryForm' com evento de submit que chama 'handleSubmitCategoryAction' -->
+  <form [formGroup]="categoryForm" (ngSubmit)="handleSubmitCategoryAction()">
+
+    <!-- Container card com layout flexível para alinhar os elementos do formulário -->
+    <div class="card flex flex-column md:flex-column gap-3">
+
+      <!-- Campo de entrada de texto para o nome da categoria, vinculado ao formControlName 'name' -->
+      <input pInputText placeholder="Nome" formControlName="name" />
+
+      <!-- Div para centralizar o botão de submit -->
+      <div class="flex flex-row justify-content-center align-content-center align-items-center">
+
+        <!-- Botão de submit, desabilitado se o formulário for inválido -->
+        <p-button
+          [disabled]="!categoryForm.valid"
+          type="submit"
+          label="Concluir"
+        ></p-button>
+      </div>
+    </div>
+  </form>
+</div>
